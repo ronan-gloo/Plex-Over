@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li class="active"><a href="index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Html Modal plugin</h1>
+<div class="alert"><strong>This plugin requires bootstrap-modal.js</strong>
+</div><article>
+	<h3>modal(array(attrs) )</h3>
+	<ol>
+		<li>fade => <code>(bool)</code> fade or not</li>
+		<li>hide => <code>(bool)</code> shown or not</li>
+	</ol>
+	
+	<h3>title((string))</h3>
+	<p>Set the title of the modal. Calling this method further will override prev title.</p>	
+	
+	<h3>form((array)attrs)</h3>
+	<p>This method allow you to wrap .modal-body and .modalfooter into a form.<br />
+		Attibutes are attrs for the Form::open() method.
+	</p>
+	
+	<h3>body((string))</h3>
+	<p>Set once or multiple times content elements of your modal.</p>	
+	
+	<h3>action((string))</h3>
+	<p>Set once or multiple times footer elements of your modal (usually buttons).</p>
+
+<pre>$modal = Html::modal(array('id' => 'mymodal', 'fade' => true))
+	->title('My Modal')
+	->form(array('method' => 'get'))
+	->body(Form::input('test'))
+	->action(Html::button('#', 'Close', array('data-dismiss' => 'modal')))
+	->action(Form::reset('reset', 'Reset', array('status' => 'success')))
+	->action(Form::submit('', 'Go', array('status' => 'primary')));
+
+echo $modal->render();
+</pre>
+	<a data-toggle="modal" class="btn btn-primary" href="#mymodal">Show modal</a>	<div id="mymodal" class="modal fade hide"><div class="modal-header"><a class="close" data-dismiss="modal">&times;</a><h3>My Modal</h3></div><div class="modal-body"><input class="" name="q" value="" type="text" id="form_q" /></div><div class="modal-footer"><a data-dismiss="modal" class="btn" href="#">Close</a><button type="reset" class="btn btn-success" name="reset">Reset</button><button type="submit" class="btn btn-primary" name="">Go</button></div></div></article>
+<hr />
+
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

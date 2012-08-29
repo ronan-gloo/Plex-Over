@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li class="active"><a href="index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Pagination</h1>
+<hr />
+<article>
+	<pre>
+Pagination::set_config(array(
+	'pagination_url' => '#',
+	'total_items' => 50,
+	'per_page'		=> 10,
+	'uri_segment'	=> 1
+));
+	</pre>
+	<pre>Pagination::create_links();</pre>
+	<ul class="pagination"> <li class="previous active"><a>&laquo; Previous </a></li><li class="active"><a> 1 </a></li><li><a href="#?=2">2</a></li><li><a href="#?=3">3</a></li><li><a href="#?=4">4</a></li><li><a href="#?=5">5</a></li><li class="next"> <a href="#?=2">Next &raquo;</a> </li> </ul></article>
+<article>
+	<h3>pager(prev_text, next_text, (array)attrs)</h3>
+	<pre>Pagination::pager('Previous', 'Next');</pre>
+	<ul class="pager"> <li class="previous active"><a>&laquo; Previous </a></li><li class="next"> <a href="#/2">Next &raquo;</a> </li></ul></article>
+<hr />
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li class="active"><a href="index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Html Carousel plugin</h1>
+<div class="alert"><strong>This plugin requires bootstrap-carousel.js</strong>
+</div>
+<h3>carousel( array(attrs) )</h3>
+<ol>
+	<li>slide			=> <code>(bool)</code> animate transitions (default: false)</li>
+	<li>interval	=> <code>(int)</code> Interval (seconds) beetwenn slides (default 2000)</li>
+	<li>pause			=> <code>(int)</code> Pauses the cycling of the carousel (default: hover)</li>
+	<li>active		=> <code>(int)</code> Manually define the index of the active slide (default 0)</li>
+</ol>
+<p>If you pass an <code>id</code> attibute, content-panes will use as namepace</p>
+
+<h3>add( text, title, content )</h3>
+<p>add a slice.<br />If <code>title</code> and <code>content</code> are provided, the method set() will be called</p>
+
+<h3>caption( title,  content)</h3>
+<p>Set the caption content of the prev added slice</p>
+
+<h3>active( (int) index )</h3>
+<p>Set the active index of the set</p>
+
+<h3>render( )</h3>
+<p>Returns the html</p>
+
+<hr />
+<h3>Fully configured example example</h3>
+<pre>
+Html::carousel(array('slide' => true, 'active' => 1, 'interval' => 3000))
+		->add(Html::img('bootstrap-mdo-sfmoma-01.jpg'))->caption('Title 1', 'First caption content')
+		->add(Html::img('bootstrap-mdo-sfmoma-02.jpg'))->caption('Title 2', 'Second caption content')
+		// dont use caption()
+		>add(Html::img('bootstrap-mdo-sfmoma-03.jpg'), 'Title 3', 'Third caption content')
+		->render();
+</pre>
+	<div class="span9">
+	<div id="carousel1" class="carousel slide"><div class="carousel-inner"><div class="item"><img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="bootstrap-mdo-sfmoma-01" /><div class="carousel-caption"><h4>Title 1</h4><p>First caption content</p></div></div><div class="active item"><img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="bootstrap-mdo-sfmoma-02" /><div class="carousel-caption"><h4>Title 2</h4><p>Second caption content</p></div></div><div class="item"><img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="bootstrap-mdo-sfmoma-03" /><div class="carousel-caption"><h4>Title 3</h4><p>Third caption content</p></div></div></div><a data-slide="prev" class="left carousel-control" href="#carousel1">&lsaquo;</a><a data-slide="next" class="right carousel-control" href="#carousel1">&rsaquo;</a></div><script type="text/javascript">$(function(){ $("#carousel1").carousel({"interval":3000}); });</script>	</div>
+<hr />				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li class="active"><a href="index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<div class="title">
+	<h1>Forms</h1>
+	<p class="lead"><a href="../form_example/index.html">See full example here</a></p>
+</div>
+<hr />
+<article>
+	<h3>open( array(type) )</h3>
+	<ol>
+		<li>type => <code>inline, vertical, search, horizontal</code></li>
+	</ol>
+	<pre>Form::open(array('type' => 'inline'))</pre>
+	&lt;form class=&quot;form-inline&quot; action=&quot;http://scripts.e-glou.com/index.php/bootstrap/form&quot; accept-charset=&quot;utf-8&quot; method=&quot;post&quot;&gt;</article>
+<hr />
+
+<article>
+	<h3>fieldset_open( array(state) )</h3>
+	<ol>
+		<li>state => <code>error, warning, success</code> or string (<code>state</code>)</li>
+	</ol>
+	<pre>Form::fieldset_open(array('state' => 'error'))</pre>
+	&lt;fieldset class=&quot;control-group error&quot; &gt;</article>
+<hr />
+
+<article>
+	<h3>control_open( array(state) )</h3>
+	<ol>
+		<li>state => <code>error, warning, success</code> or string (<code>state</code>)</li>
+	</ol>
+	<p>This method generates a .control div element.<br />
+	<code>.control-label</code> class for labels are auto generated, and inputs are wrapped inside a <code>.controls</code> div.</p>
+	<pre>
+Form::control_open('success')
+	Form::label('my label')
+	Form::input('test')
+Form::control_close()
+</pre>
+	<form>
+	<div class="control-group success">	<label class="control-label" for="form_">my label</label>	<div class="controls">
+<input class="" name="test" value="" type="text" id="form_test" />	</div>
+</div>	</form>
+</article>
+<hr />
+
+<article>
+	<h3>input( name, value, array(attrs) )</h3>
+	<ol>
+		<li>prepend => <code>(string) html, character or an icon (specified by "icon-*")</code></li>
+		<li>append	=> <code>(string) html, character or an icon (specified by "icon-*")</code></li>
+		<li>size 		=> <code>(string) small, medium, large, xlarge</code></li>
+		<li>state 	=> <code>(string) disabled, active</code></li>
+	</ol>
+	<pre>Form::input('test', null, array('prepend' => '@', 'append' => 'icon-user', 'size' => 'mini'))</pre>
+	<div class="input-prepend input-append"><span class="add-on">@</span><input class="input-mini" name="test" value="" type="text" id="form_test" /><span class="add-on"><i class="icon-user"></i></span></div>	<pre>Form::password('test', null, array('append' => Form::button('check'), 'state' => 'active'))</pre>
+	<div class="input-append"><input type="password" class="active" name="test" value="" id="form_test" /><button class="btn" name="check">check</button></div></article>
+<hr />
+
+<article>
+	<h3>Typeahead( $field, $value = null, array $attributes = array() )</h3>
+	<ol>
+		<li>source => <code>(array) data source</code></li>
+		<li>items => <code>(int) number of items to display</code></li>
+		<li>multiple => <code>(bool) multiple or not. See https://github.com/twitter/bootstrap/pull/2007</code></li>
+	</ol>
+
+	<pre>Form::typeahead('contries', null, array(
+		'prepend'=> 'icon-globe',
+		'source' => array('france', 'germany', 'belgium', 'spain')
+	))</pre>
+	<div class="input-prepend"><span class="add-on"><i class="icon-globe"></i></span><input data-source="[&quot;france&quot;,&quot;germany&quot;,&quot;spain&quot;,&quot;belgium&quot;]" data-provide="typeahead" autocomplete="off" class="" name="contries" value="" type="text" id="form_contries" /></div></article>
+<hr />
+
+<article>
+	<h3>help( text, array(type) )</h3>
+	<ol>
+		<li>text: help text to display</li>
+		<li>type => <code>inline, block</code> or string (<code>type</code>) (default: inline in config file)</li>
+	</ol>
+	<pre>Form::help('Field is required')</pre>
+	<input class="" name="field" value="" type="text" id="form_field" />	<span class="help-inline">Field is required</span>	<pre>Form::help('Field is required', 'block')</pre>
+	<input class="" name="field" value="" type="text" id="form_field" />	<p class="help-block">Field is required</p></article>
+<hr />
+
+<article>
+	<h3>button( name, value, array(attrs) )</h3>
+	<ol>
+		<li>icon 			=> <code>(string) name of the icon</code> (without 'icon-' prefix)</li>
+		<li>icon-pos	=> <code>(string) left, right</code>position of the icon</li>
+		<li>status 		=> <code>(string) primary, inverse, default, warning, danger, info, success</code></li>
+		<li>size 			=> <code>(string) small, mini, large</code></li>
+		<li>state 		=> <code>(string) disabled, active</code></li>
+	</ol>
+	<pre>Form::button('test', 'Click me', array('icon' => 'fire', 'status' => 'danger', 'size' => 'large'))</pre>
+	<button class="btn btn-danger btn-large" name="test"><i class="icon icon-fire icon-white"></i> Click me</button>	<hr />
+	<h3>submit || reset( name, value, array(attrs) )</h3>
+	<ol>
+		<li>status 		=> <code>(string) primary, inverse, default, warning, danger, info, success</code></li>
+		<li>size 			=> <code>(string) small, mini, large</code></li>
+		<li>state 		=> <code>(string) disabled, active</code></li>
+	</ol>
+	<pre>
+Form::submit('submit', 'Submit', array('status' => 'primary'))
+Form::reset('reset', 'Reset')</pre>
+	<button type="submit" class="btn btn-primary" name="submit">Submit</button>	<button type="reset" class="btn" name="reset">Reset</button></article>
+<hr />
+
+<article>
+	<h3>action_open( array(attrs) )</h3>
+	<p>Open an <code>.form-actions</code> div</p>
+	<pre>
+Form::action_open()
+	Form::submit('submit', 'Submit', array('status' => 'primary'))
+	Form::reset('reset', 'Reset')
+Form::action_close()
+</pre>
+<div class="form-actions">	<button type="submit" class="btn btn-primary" name="submit">Submit</button>	<button type="reset" class="btn" name="reset">Reset</button></div>
+</article>
+<hr />
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

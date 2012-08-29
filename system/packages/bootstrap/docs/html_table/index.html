@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li class="active"><a href="index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Html Table Plugin</h1>
+<p>Create table from a model</p>
+<hr />
+
+<h3>Setting up your Model </h3>
+<p>There is 3 ways to get model properties:</p>
+<ol>
+	<li>Provide an array of properties as second arg of <code>forge()</code> (see below).</li>
+	<li>Add a <code>$_html_table</code> property into your model and set properties into.</li>
+	<li>If isn't properties, the plugin will try to use <code>$_properties</code> form your model, and set values with keys.</li>
+</ol>
+<span class="badge badge-warning">Warning</span> If the model is an instance of Model_Crud, <code>$_properties</code> should be <strong>public</strong>.
+<br />
+<br />
+<p>In situations 1 & 2, the properties is an associative Array, where <strong>keys are model's properties</strong>, and <strong>values are fields</strong> to display.<br />
+The plugin will try to use the Language class to parse values, and fallback to the value if nothing is returned.</p>
+<p>If you're using the <strong>Orm Package</strong>, you can handle relations in <code>$_html_table</code> properties:</p>
+<pre>
+class Model_Post extends Orm\Model {
+	
+	public static $_properties = array('id', 'title', 'body', 'created_at');
+	public static $_has_one = array('user');
+	public static $_has_many = array('comments');
+	
+	public static $_html_table = array(
+		// Model property
+		'title' => 'Post title',
+		
+		// relation "many": will returns the count of comments
+		'comments' => 'Number of comments',
+		
+		// search into one to one relation type
+		'user.username' => 'Username',
+		
+		// search in user relationships
+		'user.group.name'	=> 'User group',
+	)
+</pre>
+<hr />
+
+<h3>forge( <small>array($items), array($properties), array($attrs)</small> )</h3>
+<ol>
+	<li>$items: array of models.</li>	
+	<li>$properties: associative array of model's properties
+		<ul>
+			<li><code>key</code>: property name</li>
+			<li><code>value</code>: string to display in the thead</li>
+		</ul>
+	</li>
+	<li>$attrs
+		<ul>
+			<li>bordered	=> <code>bool</code> Bordered table or not</li>
+			<li>striped 	=> <code>bool</code> Striped table or not</li>
+			<li>condensed => <code>bool</code> Condensed table or not</li>
+			<li>alternator => <code>(string) ie: odd|even|...etc</code> Use Str::alternator() for rows, separated by <code>|</code></li>
+		</ul>
+	</li>
+</ol>
+<pre>
+$table = Html::table::forge($posts, null, array(
+	'condensed' => true,
+	'alternator' => 'odd|even',
+	'language' => 'users'
+))
+</pre>
+<hr />
+
+<h3>cell( <small>$property, callback($model)</small> )</h3>
+<p>This method allow you to use closure in order to customize how are rendered table rows</p>
+<ol>
+	<li>property: The name of the cell</li>
+	<li>callback: A closure object, which use $model as arg</li>
+</ol>
+<pre>
+$table->cell('title', function($post){
+	return Html::anchor($post->url, $post->title);
+});
+</pre>
+
+<hr />
+<h3>append || prepend( <small>($title, callback($model), $property</small> )</h3>
+<p>Those methods allow you to use closure in order append or prepend column to the table.<br />
+<code>property</code> string is optionnal. If you provide it, be sure it's unique</p>
+<pre>
+$table->append('Edit', function($post){
+	return Html::button('/post/edit'.$post->id, 'edit');
+}, 'edit');
+</pre>
+<hr />
+
+<h3>insert_before || insert_after ( <small>$key, $title, callback($model) $property</small> )</h3>
+<p>Those methods allow you to use closure in order insert before or after <code>key</code>.<br />
+<ol>
+	<li>key (required): this is the reference property from where the column should be inserted</li>
+</ol>
+<pre>
+$table->insert_after('actus', '', function($model){
+	return Html::button('/post/comments'.$model->id, 'more', array('size' => 'small'));
+});
+</pre>
+<hr />
+
+<h3>footer( <small>array $items</small> )</h3>
+<p>Add elements to the footer (ie: pagination)<br /> colspan are automatically generated</p>
+<pre>
+$table->footer(Pagination::create_links())</pre>
+<hr />
+
+<h3>render()</h3>
+<p>Build the Html Table.</p>
+<pre>
+$table->render()</pre>
+<hr />
+
+<table class="table table-striped"><thead><tr><th>Title</th><th>Number of comments</th><th></th><th>User</th><th>Edit</th></tr></thead><tbody><tr class="odd"><td><a href="#">CDC DE LE HORPS LASSAY</a></td><td>0</td><td><a icon="icon" class="btn btn-small btn-icon" href="#">more...</a></td><td>Service dechets</td><td><a class="btn" href="#">edit</a></td></tr><tr class="even"><td><a href="#">CDC DE L'ERNEE</a></td><td>3</td><td><a icon="icon" class="btn btn-small btn-icon" href="#">more...</a></td><td>Service environnement</td><td><a class="btn" href="#">edit</a></td></tr><tr class="odd"><td><a href="#">CDC DE MESLAY DU MAINE ET GREZ EN BOUERE</a></td><td>3</td><td><a icon="icon" class="btn btn-small btn-icon" href="#">more...</a></td><td>service environnement</td><td><a class="btn" href="#">edit</a></td></tr><tr class="even"><td><a href="#">CDC DE VILLAINES LA JUHEL</a></td><td>0</td><td><a icon="icon" class="btn btn-small btn-icon" href="#">more...</a></td><td>Service Environnement</td><td><a class="btn" href="#">edit</a></td></tr><tr class="odd"><td><a href="#">CDC DES AVALOIRS</a></td><td>0</td><td><a icon="icon" class="btn btn-small btn-icon" href="#">more...</a></td><td>Service Environnement</td><td><a class="btn" href="#">edit</a></td></tr></tbody><tfoot><tr><td colspan="5"><ul class="pagination"> <li class="previous active"><a>&laquo; Previous </a></li><li class="active"><a> 1 </a></li><li><a href="#?=2">2</a></li><li><a href="#?=3">3</a></li><li><a href="#?=4">4</a></li><li><a href="#?=5">5</a></li><li class="next"> <a href="#?=2">Next &raquo;</a> </li> </ul></td></td></tfoot></table>				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

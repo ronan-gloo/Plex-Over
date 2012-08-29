@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li class="active"><a href="index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Using Templates</h1>
+<hr />
+<p>Because you may need to standardize some of your components, you can set templates in config file.<br />
+Under <code>templates</code> key, create a new one with your attributes, then call it with the key <code>from</code>:</p>
+<strong><code>attrs['from'] => 'template key'</code></strong>
+<hr />
+<h3>Paths to config files</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Classes</th>
+			<th>Config</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>Html, Html_(all)</td>
+			<td>bootstrap/html.php</td>
+		</tr>
+		<tr>
+			<td>Form</td>
+			<td>bootstrap/form.php</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h3>Example with a button</h3>
+<pre>
+// in config 'bootstrap/html.php':
+'templates' => array(
+	'btn' => array( // create a section for buttons templates
+		'add' => array(
+			'icon'		=> 'plus-sign',
+			'size'		=> 'large',
+			'status'	=> 'primary',
+			'title'		=> 'Add'
+		)
+	)
+)
+Html::button('', 'Submit', array('from' => 'btn.add'))
+</pre>
+<a title="Add" class="btn btn-large btn-primary" href="index.html"><i class="icon icon-plus-sign icon-white"></i> Add something</a><hr />
+
+<h3>Example with a progress bar</h3>
+<pre>
+// in config 'bootstrap/html.php':
+'templates' => array(
+	'progress' => array( // create a section for progress templates
+		'upload' => array(
+			'striped'	=> true,
+			'active'	=> true,
+			'status'	=> 'success'
+		)
+	)
+)
+Html::progress(80, array('from' => 'progress.upload'))
+</pre>
+
+<div class="progress progress-striped active progress-success"><div class="bar" style="width:80%"></div></div>
+
+
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

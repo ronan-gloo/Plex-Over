@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li ><a href="../html/index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1>Form example</h1>
+<hr />
+<div>
+	<form class="form-horizontal" action="http://scripts.e-glou.com/index.php/bootstrap/form_example" accept-charset="utf-8" method="post">		
+		<div class="control-group success">			<label class="control-label" for="form_">Classic input</label>			<div class="controls">
+<input class="" name="input" value="validated input" type="text" id="form_input" />			<span class="help-inline">Inline input help</span>		</div>
+</div>		
+		<div class="control-group">			<label class="control-label" for="form_">Multiples</label>			<div class="controls">
+<select name="select" id="form_select">
+	<option value="0" style="text-indent: 0px;">one</option>
+	<option value="1" style="text-indent: 0px;">two</option>
+</select>			<div class="input-append"><input class="input-mini" name="input" value="" type="text" id="form_input" /><button class="btn" name="s">Go</button></div>			<p class="help-block">Block input help</p>		</div>
+</div>		
+		<div class="control-group error">			<label class="control-label" for="form_">Checkboxes</label>			<div class="controls">
+
+<label class="checkbox"><input name="first" value="" type="checkbox" id="form_first" />
+Label for checkbox 1</label>			
+<label class="checkbox"><input name="test" value="" type="checkbox" id="form_test" />
+Label for checkbox 2</label>		</div>
+</div>		
+		<div class="control-group">			<label class="control-label" for="form_">Inline Radios</label>			<div class="controls">
+
+<label class="radio inline"><input name="test" value="" checked="1" type="radio" id="form_test" />
+inline 1</label>			
+<label class="radio inline"><input name="test" value="" checked="1" type="radio" id="form_test" />
+inline 2</label>		</div>
+</div>		
+		<div class="form-actions">			<button type="reset" class="btn" name="test">Reset</button>			<button type="submit" class="btn btn-primary" name="test">Submit</button>		</div>
+		
+	</form></div>
+
+<pre>
+ Form::open(array('type' => 'horizontal'))
+	
+	 Form::control_open('success') 
+		 Form::label('Classic input') 
+		 Form::input('input', 'validated input')
+		 Form::help('Inline input help') 
+	 Form::control_close() 
+	
+	 Form::control_open() 
+		 Form::label('Multiples inputs') 
+		 Form::select('select', null, array('one', 'two'))
+		 Form::input('input', null, array('size' => 'mini', 'append' => Form::button('s', 'Go')))
+		 Form::help('Block input help', 'block') 
+	 Form::control_close() 
+	
+	 Form::control_open('error') 
+		 Form::label('Checkboxes') 
+		 Form::checkbox('first', '', null, array('label' => 'Label for checkbox 1')) 
+		 Form::checkbox('test', '', null, array('label' => 'Label for checkbox 2'))
+	 Form::control_close() 
+
+	 Form::control_open() 
+		 Form::label('Inline Radios') 
+		 Form::radio('test', null, null, array('type' => 'inline', 'label' => 'inline 1')) 
+		 Form::radio('test', null, null, array('type' => 'inline', 'label' => 'inline 2')) 
+	 Form::control_close() 
+
+	 Form::action_open() 
+		 Form::reset('test', 'Reset') 
+		 Form::submit('test', 'Submit', array('status' => 'primary')) 
+	 Form::action_close() 
+	
+ Form::close() 
+</pre>				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->

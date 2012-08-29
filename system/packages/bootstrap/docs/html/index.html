@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Bootstrap FuelPHP Package</title>
+			<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<nav class="well">
+						<ul class="nav nav-list"><li class="nav-header">General</li>
+<li ><a href="../index/index.html">Infos and dowload</a></li>
+<li ><a href="../install/index.html">Installation</a></li>
+<li ><a href="../template/index.html">Templates</a></li>
+<li class="nav-header">Classes</li>
+<li ><a href="../form/index.html">Form class</a></li>
+<li ><a href="../pagination/index.html">Pagination class</a></li>
+<li class="active"><a href="index.html">Html class</a></li>
+<li class="nav-header">Html plugins</li>
+<li ><a href="../html_table/index.html">Html Table</a></li>
+<li ><a href="../html_modal/index.html">Html Modal</a></li>
+<li ><a href="../html_tab/index.html">Html Tabs</a></li>
+<li ><a href="../html_carousel/index.html">Html Carousel</a></li></ul>					</nav>
+				</div>
+				
+				<div class="span9">
+					<h1 id="button">HTML</h1>
+<hr />
+<article>
+	<h3>button( anchor, value, array(attrs) )</h3>
+	<ol>
+		<li>icon 			=> <code>(string) name of the icon</code> (without 'icon-' prefix)</li>
+		<li>icon-pos	=> <code>(string) left, right</code>position of the icon</li>
+		<li>status 		=> <code>(string) primary, inverse, default, warning, danger, info, success</code></li>
+		<li>size 			=> <code>(string) small, mini, large</code></li>
+		<li>state 		=> <code>(string) disabled, active</code></li>
+	</ol>
+	<pre>
+Html::button('#', 'Small link', array('size' => 'small'))
+Html::button('#', 'Primary link', array('icon' => 'home', 'icon-pos' => 'right', 'status' => 'primary'))
+Html::button('#', 'Large link active', array('state' => 'active','status' => 'danger', 'size' => 'large'))
+</pre>
+	<a class="btn btn-small" href="#">Small link</a>	<a class="btn btn-primary" href="#">Primary link <i class="icon icon-home icon-white"></i></a>	<a class="btn active btn-danger btn-large" href="#">Large link active</a></article>
+<hr />
+
+<article>
+	<h2>Dropdowns</h2>
+	<h3>drop* ( text, array(items), array(attrs) )</h3>
+	<ol>
+		<li>items:
+			<ul>
+				<li><code>String</code>: items are rendered "as it is"</li>
+				<li><code>array( (string)anchor, (string)text, (array)attrs, (bool)active )</code></li>
+				<li><code>NULL</code>: Generates a divider</li>
+			</ul>
+		</li>
+		<li>attrs
+			<ul>
+				<li>All attrs rel	related to Buttons (for button dropdown type, see above)</li>
+				<li><code>pull (left, right)</code>: pull list to the left or the right</li>
+				<li><code>split (true)</code>: split the button dropdown</li>
+			</ul>
+		</li>
+	</ol>
+	<pre>
+Html::dropdown('Dropdown', array(
+	array('#', 'fisrt item', array('icon' => 'user'), true),
+	null,
+	array('#', 'Meuh Meuh'),
+))</pre>
+	<div class="dropdown"><span class=" dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></span><ul class="dropdown-menu"><li ><a href="#">First item</a></li>
+<li ><a href="#">Second item</a></li></ul></div>	<pre>
+Html::dropdown_button('Dropdown button', array(
+	array('#', 'First item', array('icon' => 'user'), true),
+	null,
+	array('#', 'Second item'),
+	array('#', 'Third item'),
+))</pre>
+	<div class="btn-group"><button class=" btn dropdown-toggle" data-toggle="dropdown">Dropdown button <span class="caret"></span></button><ul class="dropdown-menu"><li class="active"><a href="#"><i class="icon icon-user icon-white"></i> First item</a></li>
+<li class="divider"></li>
+<li ><a href="#">Second item</a></li>
+<li ><a href="#">Third item</a></li></ul></div>	<pre>
+Html::dropup_button('Dropup button split',
+	array(
+		array('#', 'First item', array('icon' => 'user')),
+		array('#', 'Second item', array('icon' => 'cog')),
+	),
+	array(
+		'status'	=> 'primary',
+		'split' => true,
+		'pull' => 'left'
+))</pre>
+	<div class="btn-group dropup"><button class=" btn btn-primary">Dropup button split</button><button class=" btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu pull-left"><li ><a href="#"><i class="icon icon-user"></i> First item</a></li>
+<li ><a href="#"><i class="icon icon-cog"></i> Second item</a></li></ul></div>	
+</article>
+<hr />
+
+
+<article>
+	<h3>label || badge ( value, array(attrs) )</h3>
+	<ol>
+		<li>status => <code>(string) primary, inverse, default, warning, inportant, info, success</code> or string(<code>status</code>)</li>
+	</ol>
+	<pre>Html::label('Label', 'important')
+Html::badge('Badge', array('status' => 'info', 'id' => 'mybadge'))</pre>
+	<span class="label label-important">Label</span>	<span id="mybadge" class="badge badge-info">Badge</span></article>
+<hr />
+
+<article>
+	<h3>alert(title, body, array(attrs) )</h3>
+	<ol>
+		<li>status => <code>(string) warning, danger, info, success</code> or string(<code>status</code>)</li>
+		<li>close => <code>(bool) or (string) fade</code> close button</li>
+		<li>type 	=> <code>(string) block, inline</code> (default: inline)</li>
+	</ol>
+	<pre>
+Html::alert('Warning !', 'Alert content')
+Html::alert('Info !', 'Alert block content', array('type' => 'block', 'close' => 'fade', 'status' => 'info')
+</pre>
+	<div class="alert"><strong>Warning !</strong>
+Alert content</div>	<div class="alert fade in alert-info"><a class="close" data-dismiss="alert">&times;</a>
+<h4 class="alert-heading">Info !</h4>
+Alert block content</div></article>
+<hr />
+
+
+<article>
+	<h3>progress( percent, array(attrs) || (string) status)</h3>
+	<ol>
+		<li>active 	=> <code>(bool)</code> animated or not</li>
+		<li>striped => <code>(bool)</code> striped or not</li>
+		<li>status 	=> <code>(string) warning, danger, info, success</code></li>
+	</ol>
+	<pre>
+Html::progress(50)
+Html::progress(25, array('striped' => true, 'active' => true, 'status' => 'success'))
+</pre>
+	<div class="progress"><div class="bar" style="width:50%"></div></div>	<div class="progress progress-striped active progress-success"><div class="bar" style="width:25%"></div></div></article>
+<hr />
+
+<article>
+	<h3 id="breadcrumb">breadcrumb( array items, array(attrs) )</h3>
+	<ol>
+		<li>divider => <code>(string) default: '/'</code> or string(<code>divider</code>): item's separator</li>
+		<li>Item element: <code>array( 'anchor', 'text', (array)attrs, (bool)active )</code></li>
+		<li>Item attributes supports <code>icon</code> key.</li>
+	</ol>
+	<pre>
+Html::breadcrumb(array(
+	array('#', 'Home', array('icon' => 'home')),
+	array('#', 'Categories'),
+	'Bootstrap'
+))
+	</pre>
+	<ul class="breadcrumb"><li><a href="#breadcrumb"><i class="icon icon-home"></i> Home</a><span class="divider">/</span></li>
+<li><a href="#breadcrumb">Categories</a><span class="divider">/</span></li>
+<li class="active">Bootstrap</li></ul></article>
+<hr />
+
+<article>
+	<h3>navlist( array items, array(attrs) )</h3>
+	<ol>
+		<li>Item element: <code>array( 'anchor', 'text', (array)attrs, (bool)active )</code></li>
+		<li>Item attributes supports <code>icon key</code>. Passing a string instead of an array generates a header</li>
+	</ol>
+
+	<pre>
+Html::navlist(array(
+	'First Header',
+	array('#', 'second test', array('icon' => 'cog'), true),
+	'Second Header',
+	array('#', 'first test', array('icon' => 'globe')),
+	array('#', 'second test', array('icon' => 'inbox')),
+))
+	</pre>
+	<ul class="nav nav-list"><li class="nav-header">First Header</li>
+<li class="active"><a href="#"><i class="icon icon-cog icon-white"></i> first test</a></li>
+<li class="nav-header">Second Header</li>
+<li ><a href="#"><i class="icon icon-globe"></i> first test</a></li>
+<li ><a href="#"><i class="icon icon-inbox"></i> second test</a></li></ul></article>
+<hr />
+
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- Localized -->
