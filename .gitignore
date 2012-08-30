@@ -1,1 +1,4 @@
 app/logs/*
+app/cache/*
+app/tmp/*
+app/databases/*
