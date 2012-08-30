@@ -47,7 +47,6 @@ class Text {
 			static::$modal = Html::modal(array('fade' => true, 'slide' => true, 'id' => 'modal-summary'))
 				->title(__('app.full_story'))
 				->body(self::autolink(self::to_html(implode("\n\n", $splited))))
-				->action(Html::button('#', __('app.close'), array('data-dismiss' => 'modal')))
 				->render();
 			
 			// Create Anchor

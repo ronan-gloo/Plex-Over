@@ -26,9 +26,3 @@
 		</table>
 	</div>
 </div>
-
-<hr/>
-
-<nav>
-	<?= $pager ?>
-</nav>

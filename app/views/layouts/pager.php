@@ -1,4 +1,4 @@
-<ul class="pager">
+<ul class="bpager">
 	<?php if($prev = $item->prev($params)): ?>
 		<li class="previous"><?= Html::anchor(To::$to($prev).$get, '&larr; '.$prev->index_title(), array(
 			//'title'			=> $prev->title,

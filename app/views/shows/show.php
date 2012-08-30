@@ -54,10 +54,4 @@
 			</table>
 		</div>
 	</div>
-	
-	<nav>
-		<?= $pager ?>
-	</nav>
-
-
 </div>

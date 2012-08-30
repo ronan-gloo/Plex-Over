@@ -40,9 +40,5 @@
 			<?= Widget_Download::forge($episode) ?>
 		</div>
 	</div>
-	
-	<hr />
-	
-	<nav><?= $pager ?></nav>
-	
+
 </div>

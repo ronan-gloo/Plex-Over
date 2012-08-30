@@ -88,13 +88,15 @@ abstract class Controller_Public extends Controller {
 	
 	/**
 	 * Build pager.
+	 * Set the global view variable "paged" to true,
+	 * to add .paged class to template.
 	 * 
 	 * @access protected
 	 * @param mixed $item
 	 * @param mixed $method
 	 * @return void
 	 */
-	protected function pager($item, $method)
+	protected function set_pager($item, $method)
 	{
 		$pager = View::forge('layouts.pager', array(
 			'item' 	=> $item,
@@ -102,7 +104,8 @@ abstract class Controller_Public extends Controller {
 			'params'=> array('order' => $this->order_by(), 'direction' => $this->order_dir()),
 			'get'		=> '?'.http_build_query($this->get_params())
 		));
-		return $pager;
+		
+		return $this->ui()->set('pagination', $pager);
 	}
 	
 	/**

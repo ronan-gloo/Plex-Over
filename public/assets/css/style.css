@@ -96,8 +96,6 @@ input[type="search"] {
 .title {
 	height: 40px;
 	margin-bottom: .5em;
-	padding-bottom: .5em;
-	border-bottom: 1px solid #eee;
 }
 .sorter {
 	 margin-top: 5px; /* align dropdown with .title */
@@ -178,6 +176,7 @@ input[type="search"] {
 .video-player .carousel-caption h4 {
 	color: #333;
 }
+
 /* ! ------ PAGE LOGIN ------*/
 #login-form {
 	float: none;
@@ -188,11 +187,12 @@ input[type="search"] {
 	border-radius: 0;
 }
 
-/* Layouts */
+/* ! ----- LAYOUTS ----- */
 #navigation {
 	overflow-x: hidden;
 }
-#navigation .breadcrumb {
+#navigation .breadcrumb,
+#content-footer {
 	border-radius: 0;
 }
 #wrapper {
@@ -224,11 +224,19 @@ input[type="search"] {
 	top:35px;
 	bottom: 0;
 	left:0;
+	padding: 0 20px;
 	right: 0;
-	padding: 20px;
 	overflow: auto;
 	min-width: 400px;
 }
+.paged #content {
+	bottom: 35px;
+}
+
+#content-inner {
+	margin: 10px 0;
+}
+
 .home-section {
 	height:250px;
 	overflow: hidden;
@@ -240,6 +248,45 @@ input[type="search"] {
 }
 .home-section.album {
 	height:200px;
+}
+/* !----- Bottom content pager ----- */
+#content-footer {
+	clear: both;
+	position: fixed;
+	bottom: 0;
+	left: 200px;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	height: 35px;
+	display: none;
+}
+.paged #content-footer {
+	display: block;
+}
+#content-footer .pagination {
+	margin: 0;
+}
+#content-footer .pagination .previous a {
+	border-left: 0;
+}
+#content-footer .pagination a {
+	border-top: 0;
+	border-bottom: 0;
+	line-height: 35px;
+}
+#content-footer ul {
+	overflow: hidden;
+	margin: 0 10px;
+}
+#content-footer li {
+	line-height: 35px;
+}
+#content-footer .bpager .previous {
+	float: left;
+}
+#content-footer .bpager .next {
+	float: right;
 }
 
 /* Page Albums */
@@ -327,8 +374,6 @@ input[type="search"] {
 
 /* Audio player style> */
 .breadcrumb.audio-player {
-	background: #f5f5f5;
-	border: none;
 	position: fixed;
 	height: 25px;
 	margin: 0;

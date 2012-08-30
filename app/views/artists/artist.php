@@ -29,14 +29,3 @@
 		</ul>
 	<?php endif ?>
 </div>
-
-<hr />
-
-<nav>
-	<?= $pager ?>
-</nav>
-
-
-
-
-
