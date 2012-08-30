@@ -51,9 +51,9 @@ class Controller_Movies extends Controller_Section {
 		
 		$this->add_video_player();
 		$this->get_params();
+		$this->set_pager($movie, 'movie');
 
 		$data['movie']	= $movie;
-		$data['pager']	= $this->pager($movie, 'movie');
 		
 		$ui->content = View::forge('movies.single',$data);
 		

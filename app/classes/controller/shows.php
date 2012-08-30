@@ -51,10 +51,9 @@ class Controller_Shows extends Controller_Section {
 			array('#', $show->title),
 		);
 		
-		$ui->content = View::forge('shows.show', array(
-			'show' => $show,
-			'pager'=> $this->pager($show, 'show')
-		));
+		$ui->content = View::forge('shows.show', array('show' => $show));
+		
+		$this->set_pager($show, 'show');
 		
 		return $this->render();
 	}
@@ -79,10 +78,9 @@ class Controller_Shows extends Controller_Section {
 			array('#', __('app.season').' '.$season->index),
 		);
 		
-		$ui->content = View::forge('shows.season', array(
-			'season'	=> $season,
-			'pager'		=> $this->pager($season, 'season')
-		));
+		$ui->content = View::forge('shows.season', array('season'	=> $season));
+		
+		$this->set_pager($season, 'season');
 		
 		return $this->render();
 	}
@@ -114,9 +112,10 @@ class Controller_Shows extends Controller_Section {
 		$ui->content = View::forge('shows.episode', array(
 			'episode' => $episode,
 			'video'		=> $episode->media,
-			'pager'		=> $this->pager($episode, 'episode')
 		));
 		
+		$this->set_pager($episode, 'episode');
+
 		return $this->render();
 	}
 	

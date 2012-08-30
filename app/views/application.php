@@ -10,29 +10,27 @@
 			
 		<header id="header" class="navbar navbar-fixed-top">
 			<?= $header ?>
-		</header> <!-- Header -->
+		</header>
 		
 		<nav id="sidebar">
 			<?= $sidebar ?>
-		</nav> <!-- sidebar principale -->
+		</nav>
 		
 		<section id="content-wrapper"> 
 			<header id="navigation" class="ellipsis">
 				<?= $navigation ?>
-			</header> <!-- navigation principale -->
+			</header>
 			
 			<div id="content">
-				<?= $content ?>
+				<div id="content-inner">
+					<?= $content ?>
+				</div>
 			
-				<div id="content-footer">
+				<div id="content-footer" class="breadcrumb">
 					<?= $pagination ?>
-				</div> <!-- Footer pour les contenus -->
-			</div> <!-- contenu des pages -->
+				</div> 
+			</div>
 			
-			<footer id="footer">
-				
-			</footer>
-
 		</section>
 		<?= Text::get_modal() ?>
 	</body>

@@ -7,11 +7,27 @@
  */
 class View_Application extends ViewModel {
 	
-	public $breadcrumb = array();
-	
+	public
+		
+		/**
+		 * Breadcrumb data
+		 * 
+		 * (default value: array())
+		 * 
+		 * @var array
+		 * @access public
+		 */
+		$breadcrumb = array();
+		
+	/**
+	 * Create empty value for pagination var.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function before()
 	{
-		$this->pagination = '';
+		$this->pagination = null;
 	}
 	
 	/**
@@ -36,7 +52,6 @@ class View_Application extends ViewModel {
 		// Get required assets
 		$this->assets->css(array(
 			'bootstrap.min.css',
-			//'bootstrap-responsive.min.css',
 			'style.css'
 		), $param, $group);
 		
@@ -75,7 +90,8 @@ class View_Application extends ViewModel {
 	
 	/**
 	 * set the page class / id based on module / action
-	 * Can be used as css namespace for extra styling rules
+	 * Can be used as css namespace for extra styling rules.
+	 * We also add a "paged" class if pagination or pager are rendered
 	 * @access public
 	 * @return void
 	 */
@@ -84,6 +100,7 @@ class View_Application extends ViewModel {
 		$this->style = new stdClass;
 		$this->style->page_id			= Request::active()->module ?: $group;
 		$this->style->page_class 	= Request::active()->action;
+		$this->style->page_class .= $this->pagination ? ' paged' : '';
 	}
 	
 	/**
