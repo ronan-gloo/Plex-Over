@@ -48,6 +48,7 @@ Plex Over requires write access on following directories:
 -   app/cache
 -   app/logs
 -   app/tmp
+-		app/config/main.php
 
 Because Plex Media Server seem’s to not reference automatically
 subtitles, you may need to allow read access to them.  

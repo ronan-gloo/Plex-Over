@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Controller For Videos Library section type.
+ * 
+ * @extends Controller_Section
+ */
 class Controller_Movies extends Controller_Section {
 	
 	protected $_order_by = array(

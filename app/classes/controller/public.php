@@ -28,6 +28,7 @@ abstract class Controller_Public extends Controller {
 			$text		= html_tag('small', array(), __('app.sort_by')).' '.strtolower(__($sorterby));
 			$anchor = Uri::current().'?'.http_build_query($aparam);
 			$items	= array();
+			
 			// Dropdown items
 			foreach ($this->_order_by as $key => $val)
 			{
@@ -45,11 +46,11 @@ abstract class Controller_Public extends Controller {
 				'split' 		=> true,
 				'pull'			=> 'right'
 			), 'li');
+			
 			$output['dir'] = html_tag('li', array(), Html::anchor($anchor, __($sorterdir)));
 			
 			return $output;
 		}
-		return false;
 	}
 	
 	
@@ -166,6 +167,13 @@ abstract class Controller_Public extends Controller {
 			->js(array('http://vjs.zencdn.net/c/video.js', 'video.js'), array(), 'local');
 	}
 	
+	
+	/**
+	 * Add Audio assets.
+	 * 
+	 * @access protected
+	 * @return void
+	 */
 	protected function add_audio_player()
 	{
 		Asset::instance()->js(array('soundmanager2.js', 'audio.js'), array(), 'local');

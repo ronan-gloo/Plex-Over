@@ -8,9 +8,8 @@
  */
 class Num extends Fuel\Core\Num {
 	
-	
 	/**
-	 * Convert $num to percent 
+	 * Convert $num to percent
 	 * 
 	 * @access public
 	 * @static

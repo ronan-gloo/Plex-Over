@@ -31,7 +31,6 @@ class Controller_Parameters extends Controller {
 		$tabs = Html::tabs();
 		$tabs->add(__('global.title'))->set(View::forge('parameters.app', $global));
 		$tabs->add(__('video.title'))->set(View::forge('parameters.video', $global));
-		//$tabs->add(__('server.title'))->set(View::forge('parameters.server', $global));
 		
 		// Flash
 		$data['msg'] = ($flash = Session::get_flash('parameters'))
@@ -56,7 +55,7 @@ class Controller_Parameters extends Controller {
 	 */
 	protected function update($data)
 	{
-		$saved = 0;
+		$saved = 1;
 		
 		foreach ($data as $config => $params)
 		{
@@ -71,10 +70,16 @@ class Controller_Parameters extends Controller {
 					Config::set($fkey, $val);
 				}
 			}
-			$saved += Config::save($config, $config);
+			try {
+				Config::save($config, $config);
+			}
+			catch (FileAccessException $e) {
+				$saved = 0;
+			}
 		}
 		
 		Session::set_flash('parameters', ($saved ? 'success' : 'error'));
+		
 		Response::redirect(Uri::current());
 	}
 	

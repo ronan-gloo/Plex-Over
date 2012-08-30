@@ -33,6 +33,6 @@ return array(
 	// flash messages
 	'messages' => array(
 		'success' => 'Parameters updated successfully',
-		'error'		=> 'Something goes wrong, check permissions for config/main.php'
+		'error'		=> 'Something goes wrong, check write access for config/main.php'
 	)
 );

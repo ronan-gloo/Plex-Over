@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Controller For Photos Library section type.
+ * 
+ * @extends Controller_Section
+ */
 class Controller_Photos extends Controller_Section {
 	
 	protected $_order_by = array(
@@ -7,7 +12,15 @@ class Controller_Photos extends Controller_Section {
 		'a'	=> 'added_at',
 		'y' => 'year'
 	);
-
+	
+	
+	/**
+	 * Get paginated pictures.
+	 * 
+	 * @access public
+	 * @param mixed $id (default: null)
+	 * @return void
+	 */
 	public function action_section($id = null)
 	{
 		$data['section'] = Model_Section::find($id) ?: $this>action_404();

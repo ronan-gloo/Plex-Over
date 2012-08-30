@@ -9,5 +9,5 @@ return array(
 	'per_page' => '20',
 	'language' => 'en',
 	'subtitles_color' => 'yellow',
-	'm3u8_quality' => '1',
+	'm3u8_quality' => '7',
 );
