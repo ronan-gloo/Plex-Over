@@ -190,57 +190,14 @@ class Html extends \Fuel\Core\Html {
 				// if string, create a header...
 				? html_tag('li', array('class' => 'nav-header'), $content)
 				// or a link
-				: static::_item_array($content);
+				: static::$helper->item_array($content);
 		}
 		
 		static::$helper->add_template($attrs)->merge_classes($attrs, $class);
 		
 		return html_tag('ul', $attrs, implode("\n", $out));
 	}
-	
-	/**
-	 * Generate a breadcrumb navigation.
-	 * 
-	 * @access public
-	 * @static
-	 * @param array $items: array of items
-	 * @param array $attrs
-	 * @return void
-	 */
-	public static function breadcrumb(array $items, $attrs = array())
-	{
-		$class 	 = array('breadcrumb');
-		$content = array();
-		$actived = array('class' => 'active');
-		$lastitem= end($items);
-		
-		// default string attr is a custom items separator
-		is_string($attrs) and $attrs = array('divider' => $attrs);
-		
-		if (array_key_exists('divider', $attrs))
-		{
-			$sep = $attrs['divider']; unset($attrs['divider']);
-		}
-		else
-		{
-			$sep = '/';
-		}
-		$sep = html_tag('span', array('class' => 'divider'), $sep);
-		
-		foreach ($items as $key => $item)
-		{
-			$css	= ($item === $lastitem) ? $actived : array();
-			$css and $sep = null;
-			$item = is_array($item) ? static::_item_array($item, false) : $item;
-			$content[] = html_tag('li', $css, $item.$sep);
-		}
-		
-		static::$helper->add_template($attrs)->merge_classes($attrs, $class);
-		
-		return html_tag('ul', $attrs, implode("\n", $content));
-	}
-	
-	
+
 	/**
 	 * @access public
 	 * @static
@@ -317,6 +274,10 @@ class Html extends \Fuel\Core\Html {
 		return Html_Table::forge($items, $rpoperties, $atrs);
 	}	
 	
+	public static function breadcrumb($attrs = array(), array $items = array())
+	{
+		return Html_Breadcrumb::forge($attrs, $items);
+	}
 	
 	// --------------------------------------------------------------------
 	// INTERNAL METHODS
@@ -407,7 +368,7 @@ class Html extends \Fuel\Core\Html {
 				break;
 
 				case 'array':
-				$list[] = static::_item_array($item);
+				$list[] = static::$helper->item_array($item);
 				break;
 
 				case 'string':
@@ -418,38 +379,5 @@ class Html extends \Fuel\Core\Html {
 		$main .= html_tag('ul', array('class' => $listcss), implode("\n", $list));
 		
 		return $main;
-	}
-	
-	/**
-	 * convert an aray to an anchor element
-	 * used in navlist and breadcrumb
-	 * 
-	 * @access protected
-	 * @static
-	 * @param array $array
-	 * @return void
-	 */
-	protected static function _item_array(array $array, $tag = 'li')
-	{
-		if (isset($array[2]) and array_key_exists('icon', $array[2]))
-		{
-			// active element: set color icon to white
-			$attrs = (! empty($array[3])) ? $array[2] + array('status' => 'primary') : $array[2];
-			static::$helper->set_icon($array[1], $attrs);
-			unset($array[2]['icon']);
-		}
-		else
-		{
-			$array[2] = array();
-		}
-		
-		$item = parent::anchor($array[0], $array[1], $array[2]);
-		
-		if ($tag)
-		{
-			$attr['class'] = (isset($array[3]) and $array[3] === true) ? 'active' : null;
-			$item = html_tag($tag,$attr, $item);
-		}
-		return $item;
-	}
+	}	
 }

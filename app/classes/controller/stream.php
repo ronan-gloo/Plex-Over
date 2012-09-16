@@ -59,6 +59,10 @@ class Controller_Stream extends Controller_Public {
 			case 'ts':
 			header('Content-Type: video/MP2T');
 			break;
+			
+			default:
+      header("Content-Type:  video/x-flv");  
+			break;
 		}
 		// read the content and send it
 		$file = fopen($url, 'r');

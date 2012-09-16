@@ -300,5 +300,37 @@ class Bootstrap {
 	{
 		return ($active === true) ? array('class' => 'active') : array();
 	}
-
+	
+	/**
+	 * convert an aray to an anchor element
+	 * used in navlist and breadcrumb
+	 * 
+	 * @access protected
+	 * @static
+	 * @param array $array
+	 * @return void
+	 */
+	public function item_array(array $array, $tag = 'li')
+	{
+		if (isset($array[2]) and array_key_exists('icon', $array[2]))
+		{
+			// active element: set color icon to white
+			$attrs = (! empty($array[3])) ? $array[2] + array('status' => 'primary') : $array[2];
+			$this->set_icon($array[1], $attrs);
+			unset($array[2]['icon']);
+		}
+		else
+		{
+			$array[2] = array();
+		}
+		
+		$item = Html::anchor($array[0], $array[1], $array[2]);
+		
+		if ($tag)
+		{
+			$attr['class'] = (isset($array[3]) and $array[3] === true) ? 'active' : null;
+			$item = html_tag($tag,$attr, $item);
+		}
+		return $item;
+	}
 }

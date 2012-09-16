@@ -7,18 +7,6 @@
  */
 class View_Application extends ViewModel {
 	
-	public
-		
-		/**
-		 * Breadcrumb data
-		 * 
-		 * (default value: array())
-		 * 
-		 * @var array
-		 * @access public
-		 */
-		$breadcrumb = array();
-		
 	/**
 	 * Create empty value for pagination var.
 	 * 
@@ -28,6 +16,8 @@ class View_Application extends ViewModel {
 	public function before()
 	{
 		$this->pagination = null;
+		$this->breadcrumb = Html::breadcrumb();
+		$this->breadcrumb->add(Uri::base(), __('app.home'), array('icon' => 'home'));
 	}
 	
 	/**
@@ -63,7 +53,8 @@ class View_Application extends ViewModel {
 		
 		$this->set_title();
 		$this->set_namespace($group);
-		$this->set_breadcrumb();
+		
+		$this->breadcrumb->render();
 	}
 	
 	
@@ -101,21 +92,7 @@ class View_Application extends ViewModel {
 		$this->style->page_id			= Request::active()->module ?: $group;
 		$this->style->page_class 	= Request::active()->action;
 		$this->style->page_class .= $this->pagination ? ' paged' : '';
-	}
-	
-	/**
-	 * Build the breadcrumb from data passed by the controller
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function set_breadcrumb()
-	{
-		$bc_base = array(Uri::base(), __('app.home'), array('icon' => 'home'));
-		array_unshift($this->breadcrumb, $bc_base);
-		$this->navigation	= Html::breadcrumb($this->breadcrumb);
-	}
-	
+	}	
 	
 	/**
 	 * Set the active in sidebar list.

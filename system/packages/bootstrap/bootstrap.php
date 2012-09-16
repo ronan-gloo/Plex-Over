@@ -18,6 +18,7 @@ Autoloader::add_classes(array(
 	'Bootstrap\\Form_Instance'	=> __DIR__.'/classes/form/instance.php',
 	'Bootstrap\\Form'						=> __DIR__.'/classes/form.php',
 	'Bootstrap\\Html'						=> __DIR__.'/classes/html.php',
+	'Bootstrap\\Html_Breadcrumb'=> __DIR__.'/classes/html/breadcrumb.php',
 	'Bootstrap\\Html_Tab'				=> __DIR__.'/classes/html/tab.php',
 	'Bootstrap\\Html_Table'			=> __DIR__.'/classes/html/table.php',
 	'Bootstrap\\Html_Modal'			=> __DIR__.'/classes/html/modal.php',

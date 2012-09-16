@@ -1,5 +1,11 @@
 <?php
 
+
+/**
+ * Display and change configurable parameters.
+ * 
+ * @extends Controller
+ */
 class Controller_Parameters extends Controller {
 	
 	public function init()
@@ -8,12 +14,18 @@ class Controller_Parameters extends Controller {
 		$this->ui()->breadcrumb = array(array('#', __('app.parameters')));
 	}
 	
+	
+	/**
+	 * Get parameter's tabs.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_index()
 	{
 		if ($data = Input::post())
 		{
 			$this->update($data);
-			
 		}
 		
 		$global = Config::get('main');
@@ -22,6 +34,7 @@ class Controller_Parameters extends Controller {
 			'!^\.', // no hidden files / dirs
 			'!^' => 'file' // no files
 		));
+		
 		foreach ($folders as $folder => $nothing)
 		{
 			$code = rtrim($folder, '/');
@@ -29,8 +42,8 @@ class Controller_Parameters extends Controller {
 		}
 		
 		$tabs = Html::tabs();
-		$tabs->add(__('global.title'))->set(View::forge('parameters.app', $global));
-		$tabs->add(__('video.title'))->set(View::forge('parameters.video', $global));
+		$tabs->add(__('global.title'), View::forge('parameters.app', $global));
+		$tabs->add(__('video.title'), View::forge('parameters.video', $global));
 		
 		// Flash
 		$data['msg'] = ($flash = Session::get_flash('parameters'))

@@ -33,7 +33,7 @@ class Controller_Shows extends Controller_Section {
 		$ui->set_active('library', $data['section']);
 		
 		$ui->header->sorter	= $this->set_sorter();
-		$ui->breadcrumb			= array(array('#', $data['section']->name));
+		$ui->breadcrumb->add('#', $data['section']->name);
 		$ui->content				= View::forge('shows.index', $data);
 		
 		return $this->render();
@@ -54,10 +54,9 @@ class Controller_Shows extends Controller_Section {
 		$ui = $this->ui();
 		$ui->set_active('library', $show->section);
 		
-		$ui->breadcrumb = array(
-			array(To::section($show->section), $show->section->name),
-			array('#', $show->title),
-		);
+		$ui->breadcrumb
+			->add(To::section($show->section), $show->section->name)
+			->add('#', $show->title);
 		
 		$ui->content = View::forge('shows.show', array('show' => $show));
 		
@@ -81,11 +80,10 @@ class Controller_Shows extends Controller_Section {
 		$ui = $this->ui();
 		$ui->set_active('library', $season->section);
 		
-		$ui->breadcrumb = array(
-			array(To::section($season->section), $season->section->name),
-			array(To::show($season->show), $season->show->title),
-			array('#', __('app.season').' '.$season->index),
-		);
+		$ui->breadcrumb
+			->add(To::section($season->section), $season->section->name)
+			->add(To::show($season->show), $season->show->title)
+			->add('#', __('app.season').' '.$season->index);
 		
 		$ui->content = View::forge('shows.season', array('season'	=> $season));
 		
@@ -108,12 +106,11 @@ class Controller_Shows extends Controller_Section {
 		$ui = $this->ui();
 		$ui->set_active('library', $episode->section);
 		
-		$ui->breadcrumb = array(
-			array(To::section($episode->section), $episode->section->name),
-			array(To::show($episode->season->show), $episode->season->show->title),
-			array(To::season($episode->season), __('app.season').' '.$episode->season->index),
-			array('#', $episode->title),
-		);
+		$ui->breadcrumb
+			->add(To::section($episode->section), $episode->section->name)
+			->add(To::show($episode->season->show), $episode->season->show->title)
+			->add(To::season($episode->season), __('app.season').' '.$episode->season->index)
+			->add('#', $episode->title);
 		
 		$this->add_video_player();
 		

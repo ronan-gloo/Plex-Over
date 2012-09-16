@@ -33,8 +33,8 @@ class Controller_Artists extends Controller_Section {
 
 		$ui = $this->ui()->set_active('library', $data['section']);
 
+		$ui->breadcrumb->add('#', $data['section']->name);
 		$ui->header->sorter = $this->set_sorter();
-		$ui->breadcrumb			= array(array('#', $data['section']->name));
 		$ui->content				= View::forge('artists.index', $data);
 
 		return $this->render();
@@ -56,11 +56,10 @@ class Controller_Artists extends Controller_Section {
 		
 		$ui->set_active('library', $album->section);
 		
-		$ui->breadcrumb = array(
-			array(To::section($album->section), $album->section->name),
-			array(To::artist($album->artist), $album->artist->title),
-			array('#', $album->title),
-		);
+		$ui->breadcrumb
+			->add(To::section($album->section), $album->section->name)
+			->add(To::artist($album->artist), $album->artist->title)
+			->add('#', $album->title);
 		
 		$ui->content = View::forge('artists.album', array('album' => $album));
 		
@@ -80,10 +79,11 @@ class Controller_Artists extends Controller_Section {
 		$artist = Model_Artist::find($id);
 		
 		$ui = $this->ui()->set_active('library', $artist->section);
-		$ui->breadcrumb = array(
-			array(To::section($artist->section), $artist->section->name),
-			array('#', $artist->title),
-		);
+		
+		$ui->breadcrumb
+			->add(To::section($artist->section), $artist->section->name)
+			->add('#', $artist->title);
+		
 		$ui->content = View::forge('artists.artist', array('artist'	=> $artist));
 
 		$this->set_pager($artist, 'artist');

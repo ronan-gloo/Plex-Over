@@ -30,8 +30,8 @@ class Controller_Movies extends Controller_Section {
 		$ui->set_active('library', $data['section']);
 		
 		$ui->header->sorter = $this->set_sorter();
-		$ui->breadcrumb			= array(array('#', $data['section']->name));
-		$ui->content				= View::forge('movies.index', $data);
+		$ui->breadcrumb->add('#', $data['section']->name);
+		$ui->content = View::forge('movies.index', $data);
 		
 		return $this->render();
 	}
@@ -49,10 +49,9 @@ class Controller_Movies extends Controller_Section {
 		$ui = $this->ui();
 		$ui->set_active('library', $movie->section);
 		
-		$ui->breadcrumb = array(
-			array(To::section($movie->section), $movie->section->name),
-			array('#', $movie->title),
-		);
+		$ui->breadcrumb
+			->add(To::section($movie->section), $movie->section->name)
+			->add('#', $movie->title);
 		
 		$this->add_video_player();
 		$this->get_params();

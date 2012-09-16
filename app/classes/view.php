@@ -8,7 +8,6 @@
  */
 class View extends Fuel\Core\View {
 	
-	
 	/**
 	 * replace '.' with '/' before to let Fuel\Core\View do the job.
 	 * 

@@ -60,12 +60,15 @@ class Html_Tab {
 	 * @param bool $active (default: false)
 	 * @return void
 	 */
-	public function add($str, array $attrs = array())
+	public function add($str, $content = null, array $attrs = array())
 	{
 		$this->tabs[$this->index] = array(
 			'body' 	=> $str,
 			'attrs'	=> $attrs
-		);		
+		);
+		
+		! is_null($content) and $this->set($content);
+			
 		return $this;
 	}
 	

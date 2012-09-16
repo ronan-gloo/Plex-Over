@@ -36,7 +36,7 @@ class Controller_Photos extends Controller_Section {
 		Asset::css('jquery.fancybox.css', array(), 'local');
 			
 		$ui->header->sorter	= $this->set_sorter();
-		$ui->breadcrumb			= array(array('#', $data['section']->name));
+		$ui->breadcrumb->add('#', $data['section']->name);
 		$ui->content				= View::forge('photos.index', $data);
 
 		return $this->render();

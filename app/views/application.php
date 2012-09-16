@@ -18,7 +18,7 @@
 		
 		<section id="content-wrapper"> 
 			<header id="navigation" class="ellipsis">
-				<?= $navigation ?>
+				<?= $breadcrumb ?>
 			</header>
 			
 			<div id="content">

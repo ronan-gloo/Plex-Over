@@ -79,7 +79,12 @@ class Plex {
 		$conf = Config::get('transcode');
 		
 		$params = $conf[$tpath]['params'] + $params;
-		$params['quality']		= Config::get('main.'.$tpath.'_quality');
+		
+		if ($tpath == 'm3u8')
+		{
+			$params['quality'] = Config::get('main.'.$tpath.'_quality');
+		}
+		
 		$params['ratingKey']	= $part->media->id;
 		$params['url']				= static::$base_url.$part->path();
 		
@@ -91,7 +96,7 @@ class Plex {
 		$params['X-Plex-Access-Time']	= $now;
 		$params['X-Plex-Access-Code']	= base64_encode($hash);
 		//$params['X-Plex-Token']				= Session::get('auth_token');
-
+		
 		return static::$base_url.$conf[$tpath]['url'].http_build_query($params);
 	}
 	
