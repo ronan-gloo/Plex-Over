@@ -11,7 +11,8 @@ class Controller_Parameters extends Controller {
 	public function init()
 	{
 		Lang::load('parameters');
-		$this->ui()->breadcrumb = array(array('#', __('app.parameters')));
+		
+		$this->ui()->breadcrumb->add('#', __('app.parameters'));
 	}
 	
 	

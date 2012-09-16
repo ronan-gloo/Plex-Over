@@ -1083,10 +1083,7 @@ class Model implements \ArrayAccess, \Iterator
 		if (count($primary_key) == 1 and $id !== false)
 		{
 			$pk = reset($primary_key);
-			if ($this->{$pk} === null)
-			{
-				$this->{$pk} = $id;
-			}
+			$this->{$pk} = $id;
 		}
 
 		// update the original properties on creation and cache object for future retrieval in this request
@@ -1118,7 +1115,7 @@ class Model implements \ArrayAccess, \Iterator
 		$this->observe('before_update');
 
 		// Create the query and limit to primary key(s)
-		$query       = Query::forge(get_called_class(), static::connection())->limit(1);
+		$query       = Query::forge(get_called_class(), static::connection());
 		$primary_key = static::primary_key();
 		$properties  = array_keys(static::properties());
 		foreach ($primary_key as $pk)
